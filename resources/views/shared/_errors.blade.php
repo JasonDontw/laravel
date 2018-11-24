@@ -1,4 +1,4 @@
-@if (count($errors) > 0) <!--在php若直接$變數名稱就會直接幫你創一個變數-->
+@if (count($errors) > 0) <!--errors是內建變數-->
   <div class="alert alert-danger">
       <ul>
           @foreach($errors->all() as $error)

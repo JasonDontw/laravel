@@ -8350,6 +8350,26 @@ button.close {
   }
 }
 
+/* forms */
+
+input,
+textarea,
+select,
+.uneditable-input {
+  border: 10px solid #bbb;
+  margin-bottom: 1px;
+}
+
+input {
+  height: auto !important;
+}
+
+.panel {
+  margin-top: 50px;
+}
+
+/* sidebar */
+
 aside section {
   padding: 10px 0;
   margin-top: 20px;
@@ -8442,6 +8462,14 @@ p {
 }
 
 /* header */
+
+#logout {
+  cursor: default;
+}
+
+#logout:hover {
+  background-color: transparent;
+}
 
 .navbar-inverse {
   background-color: #3c3e42;

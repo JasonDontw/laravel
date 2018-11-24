@@ -30,7 +30,7 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
-
+        Auth::login($user);//自動登入
         session()->flash('success', '註冊成功'); //在_message.blade.php
 
         return redirect()->route('users.show', [$user]); //將實體回傳到show裡
