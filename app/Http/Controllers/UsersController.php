@@ -7,6 +7,17 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [                 //該方法接收兩個參數，第一個為中間件的名稱，第二個為要進行過濾的動作
+            'except' => ['show', 'create', 'store', 'index'] //except 方法來設定 指定動作 不使用 Auth 中間件進行過濾，意為除了此處指定的動作以外，所有其他動作都必須登錄用戶才能訪問
+        ]);
+
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     public function create(){
         return view('users.create');
     }
@@ -36,4 +47,43 @@ class UsersController extends Controller
         return redirect()->route('users.show', [$user]); //將實體回傳到show裡
     }
 
+    public function edit(User $user)
+    {
+        $this->authorize('update', $user);
+        return view('users.edit', compact('user'));
+    }
+
+
+    public function update(User $user, Request $request) //因edit有回傳$user->id所以User $user用回傳ID去抓用戶
+    {                                                    //而Request $request是取修改後的所有資料
+        $this->validate($request, [
+            'name' => 'required|max:50',
+            'password' => 'nullable|confirmed|min:6' //因為不一定要改密碼所以設為可以空
+        ]);
+
+        $this->authorize('update', $user); //將$user傳給policy的updata
+
+        $data=[];
+        $data['name']=$request->name;
+        if($request->password){   //因為密碼可能為空，所以判定有東西的時候才會寫入
+            $data['password']=$request->password;
+        }
+        $user->update($data);
+        session()->flash('success','修改成功'); 
+        return redirect()->route('users.show', $user->id);
+    }
+
+    public function index()
+    {
+        $users = User::paginate(10); //分頁10個資料一頁
+        return view('users.index', compact('users'));
+    }
+
+    public function destroy(User $user)
+    {
+        $this->authorize('destroy', $user);
+        $user->delete();
+        session()->flash('success', '成功删除用户！');
+        return back();
+    }
 }

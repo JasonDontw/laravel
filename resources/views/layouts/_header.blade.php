@@ -6,21 +6,21 @@
         <nav>
             <ul class="nav navbar-nav navbar-right">
             @if (Auth::check())
-            <li><a href="#">用戶列表</a></li>
+            <li><a href="{{ route('users.index') }}">用戶列表</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 {{ Auth::user()->name }} <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><a href="{{ route('users.show', Auth::user()->id) }}">個人中心</a></li>
-                <li><a href="#">編輯資料</a></li>
+                <li><a href="{{ route('users.edit', Auth::user()->id) }}">編輯資料</a></li>
                 <li class="divider"></li>
                 <li>
 
                   <a id="logout" href="#">
                     <form action="{{ route('logout') }}" method="POST">
                       {{ csrf_field() }}
-                      {{ method_field('DELETE') }}
+                      {{ method_field('DELETE') }} <!--因為HTML沒有method="DELETE"所以要加上這行去變更它的性質-->
                       <button class="btn btn-block btn-danger" type="submit" name="button">登出</button>
                     </form>
                   </a>
