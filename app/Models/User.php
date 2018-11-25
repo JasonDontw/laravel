@@ -45,9 +45,20 @@ class User extends Authenticatable
             $user->activation_token = str_random(30);
         });
     }
-    
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }    
+
+    public function feed()
+    {
+        return $this->statuses()
+                    ->orderBy('created_at', 'desc');
     }
 }

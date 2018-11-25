@@ -25,7 +25,10 @@ class UsersController extends Controller
     }
 
     public function show(User $user){
-        return view('users.show', compact('user')); //將user用compact包起來傳給user.show使用
+        $statuses = $user->statuses()    //因Modle的user已經跟statuses關聯所以可以這樣直接取值
+                           ->orderBy('created_at', 'desc') //desc 是英文 descending 的簡寫，意為倒序，也就是數字大的排靠前。
+                           ->paginate(30);
+        return view('users.show', compact('user','statuses')); //將user用compact包起來傳給user.show使用
 
     }
 
