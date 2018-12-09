@@ -13,11 +13,11 @@ vscode + Laravel + Xampp
 
 2. Add the words in bottom of xampp\apache\conf\extra\httpd-vhosts.conf
 <p>
-<VirtualHost *:80> <br>
+//<VirtualHost *:80> <br>
     ServerName LaravelSimpleBlog <br>
     DocumentRoot "C:\xampp\htdocs\LaravelSimpleBlog\public"<br>
     ServerAdmin webmaster@LaravelSimpleBlog.test <br>
-</VirtualHost>
+//</VirtualHost>
 </p>
 3. Add the words in bottom of C:\Windows\System32\drivers\etc\hosts
 
