@@ -19,7 +19,7 @@ VirtualHost *:80> <br>
     ServerAdmin webmaster@LaravelSimpleBlog.test <br>
 /VirtualHost>
 </p>
-3. Add the words in bottom of C:\Windows\System32\drivers\etc\hosts
+3. Add the words in bottom of C:\Windows\System32\drivers\etc\hosts<br>
 
     127.0.0.1       LaravelSimpleBlog
     
