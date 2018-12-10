@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 ![img](https://github.com/JasonDontw/laravel/blob/master/blog.gif)
-
+<img src='https://github.com/JasonDontw/laravel/blob/master/blog.gif'>
 1.安裝VirtualBox
 
 2.安裝Vagrant
